@@ -17,8 +17,11 @@ public class ResponseDto<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T result;
 
+    public static <T> ResponseDto<T> onSuccess(T result){
+        return new ResponseDto<>(true, Code.OK.getCode() , Code.OK.getMessage(), result);
+    }
     public static <T> ResponseDto<T> onSuccess(Code code, T data) {
-        return new ResponseDto<>(true, "요청에 성공하였습니다.",code.getMessage(), data);
+        return new ResponseDto<>(true, code.getCode(),code.getMessage(), data);
     }
 
     public static <T> ResponseDto<T> onFailure(Code code, T data) {

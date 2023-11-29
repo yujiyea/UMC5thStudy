@@ -6,6 +6,9 @@ import com.example.umc5thStudy.domain.mapping.PreferFood;
 import com.example.umc5thStudy.domain.mapping.Review;
 import com.example.umc5thStudy.domain.mapping.UserMission;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +17,8 @@ import java.util.List;
 
 @Entity
 @Getter
+@DynamicUpdate
+@DynamicInsert
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -34,6 +39,11 @@ public class User extends BaseEntity {
     private Date birth;
     @Column(nullable = false, length = 100)
     private String address;
+
+    @ColumnDefault("0")
+    private Integer point;
+
+    @ColumnDefault("0")
     private boolean status;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
