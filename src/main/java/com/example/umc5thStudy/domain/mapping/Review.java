@@ -27,11 +27,26 @@ public class Review extends BaseEntity {
     private Restaurant restaurant;
 
     @Column(nullable = false)
-    private Integer score;
+    private Float score;
     private String image;
     @Column(nullable = false, length = 300)
     private String content;
 
     @ColumnDefault("0")
     private boolean isDeleted;
+
+    public void setUser(User user){
+        if(this.user != null)
+            user.getReviewList().remove(this);
+        this.user = user;
+        user.getReviewList().add(this);
+    }
+
+    public void setRestaurant(Restaurant restaurant){
+        if (this.score != null)
+            restaurant.getReviewList().remove(this);
+        this.restaurant = restaurant;
+        restaurant.getReviewList().add(this);
+    }
+
 }

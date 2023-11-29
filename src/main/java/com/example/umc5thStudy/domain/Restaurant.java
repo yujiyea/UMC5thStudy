@@ -1,10 +1,13 @@
 package com.example.umc5thStudy.domain;
 
 import com.example.umc5thStudy.domain.common.BaseEntity;
+import com.example.umc5thStudy.domain.mapping.Review;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,5 +35,8 @@ public class Restaurant extends BaseEntity {
 
     @ColumnDefault("0")
     private boolean isDeleted;
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
 
 }
