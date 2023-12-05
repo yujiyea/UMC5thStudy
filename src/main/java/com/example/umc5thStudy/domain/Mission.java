@@ -25,7 +25,7 @@ public class Mission extends BaseEntity {
     private Restaurant restaurant;
 
     private String content;
-    private String reward;
+    private Integer reward;
     private Date deadline;
     @ColumnDefault("0")
     private boolean isDeleted;
